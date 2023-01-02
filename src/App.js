@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { ImCross } from "react-icons/im";
 
 function App() {
+  function handleAdd() {}
+
+  function handleDelete() {}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <div className="container">
+        <h1 className="title">Todo List</h1>
+        <table>
+          <tr>
+            <td>test</td>
+            <td>test</td>
+            <div className="delete-button" onclick={handleDelete}>
+              <ImCross size={15} />
+            </div>
+          </tr>
+        </table>
+      </div>
     </div>
   );
 }
