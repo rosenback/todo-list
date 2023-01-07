@@ -43,23 +43,36 @@
   flex-direction: row;
   margin-bottom: 10px;
 }
+.todo-item:-moz-drag-over {
+  background: red;
+}
 
 .todo-text {
   display: flex;
   align-items: center;
   background: white;
   color: black;
-  border-radius: 10px 0 0 10px;
   font-size: 20px;
-  width: 90%;
+  width: 80%;
   height: 50px;
-  padding-left: 10px;
 }
 
-.todo-edit {
+.todo-drag {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 10px;
+  height: 50px;
+  width: 10%;
+  background: white;
+  border-radius: 10px 0 0 10px;
+}
+
+.todo-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   height: 50px;
   width: 10%;
   background: white;
