@@ -5,15 +5,18 @@ import { ImMenu } from "react-icons/im";
 import { useState, useEffect, useRef } from "react";
 
 function TodoList() {
+  //Getting the locally stored list
   const [list, setList] = useState(() => {
     return JSON.parse(localStorage.getItem("todoList")) || [];
   });
   const [todo, setTodo] = useState("");
 
+  //Store the list locally
   useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(list));
   }, [list]);
 
+  //Functionality to use the Enter-key to add to list
   useEffect(() => {
     const listener = (event) => {
       if (event.code === "Enter" || event.code === "NumpadEnter") {
@@ -30,6 +33,7 @@ function TodoList() {
   const dragItem = useRef(null);
   const dragOverItem = useRef(null);
 
+  //Handles the drag and drop functionality and order the list after
   function handleSort() {
     const newList = [...list];
     const draggedItemContent = newList.splice(dragItem.current, 1)[0];
@@ -45,6 +49,7 @@ function TodoList() {
     setTodo(event.target.value);
   }
 
+  //Add new todo to the list
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function handleAdd() {
     if (todo !== "") {
@@ -56,6 +61,7 @@ function TodoList() {
     }
   }
 
+  //Removing a finished todo from the list
   function handleRemove(key) {
     const removeTodo = [...list].filter((item, index) => index !== key);
     setList(removeTodo);
