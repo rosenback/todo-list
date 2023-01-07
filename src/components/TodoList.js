@@ -2,7 +2,7 @@ import React from "react";
 import "./TodoList.css";
 import { ImCheckmark } from "react-icons/im";
 import { ImMenu } from "react-icons/im";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function TodoList() {
   const [list, setList] = useState(() => {
@@ -10,12 +10,25 @@ function TodoList() {
   });
   const [todo, setTodo] = useState("");
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("todoList", JSON.stringify(list));
   }, [list]);
 
-  const dragItem = React.useRef(null);
-  const dragOverItem = React.useRef(null);
+  useEffect(() => {
+    const listener = (event) => {
+      if (event.code === "Enter" || event.code === "NumpadEnter") {
+        event.preventDefault();
+        handleAdd();
+      }
+    };
+    document.addEventListener("keydown", listener);
+    return () => {
+      document.removeEventListener("keydown", listener);
+    };
+  }, [handleAdd]);
+
+  const dragItem = useRef(null);
+  const dragOverItem = useRef(null);
 
   function handleSort() {
     const newList = [...list];
@@ -32,6 +45,7 @@ function TodoList() {
     setTodo(event.target.value);
   }
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function handleAdd() {
     if (todo !== "") {
       const newList = list.concat({ todo });
@@ -73,13 +87,12 @@ function TodoList() {
             onDragOver={(e) => e.preventDefault()}
           >
             <div className="todo-drag">
-              <ImMenu size={25} color={"black"} cursor={"move"} />
+              <ImMenu size={25} cursor={"move"} />
             </div>
             <div className="todo-text">{item.todo}</div>
             <div className="todo-check">
               <ImCheckmark
                 size={25}
-                color={"#00b0b9"}
                 cursor={"pointer"}
                 onClick={() => handleRemove(index)}
               />
