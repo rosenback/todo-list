@@ -9,30 +9,20 @@
   justify-content: center;
 }
 
-.container {
+.app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: absolute;
   background: #112b2b;
   color: white;
-  height: 80%;
-  width: 30%;
+  height: 650px;
+  width: 500px;
   border: 1px solid white;
-  padding: 20px;
+  border-radius: 10px;
   box-shadow: black 0px 5px 15px;
 }
 
-.add-button {
-  color: #00b0b9;
-  cursor: pointer;
-}
-
-.delete-button {
-  color: red;
-  cursor: pointer;
-}
-
-.title {
+.app-title {
   border-bottom: 3px solid #00b0b9;
+  margin-top: 20px;
 }

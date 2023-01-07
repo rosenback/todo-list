@@ -1,24 +1,12 @@
 import "./App.css";
-import { ImCross } from "react-icons/im";
+import TodoList from "./components/TodoList";
 
 function App() {
-  function handleAdd() {}
-
-  function handleDelete() {}
-
   return (
     <div className="app">
-      <div className="container">
-        <h1 className="title">Todo List</h1>
-        <table>
-          <tr>
-            <td>test</td>
-            <td>test</td>
-            <div className="delete-button" onclick={handleDelete}>
-              <ImCross size={15} />
-            </div>
-          </tr>
-        </table>
+      <div className="app-container">
+        <h1 className="app-title">Todo List</h1>
+        <TodoList />
       </div>
     </div>
   );
